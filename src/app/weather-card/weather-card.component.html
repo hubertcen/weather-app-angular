@@ -1,0 +1,75 @@
+<main>
+  <div class="bg-gray-400 w-full rounded-3xl mb-8">
+    <div
+      class="h-full relative flex items-center justify-between p-2 font-light"
+    >
+      <input
+        type="text"
+        class="p-1 flex-1 bg-transparent outline-none placeholder:text-white"
+        placeholder="Search for a city"
+        [(ngModel)]="query"
+        (keydown)="search($event)"
+      />
+    </div>
+  </div>
+  <div class="max-w-2xl mx-auto mt-20" *ngIf="weather?.main">
+    <div class="bg-gray-600 rounded-t-xl shadow-lg overflow-hidden">
+      <div class="px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="font-semibold text-xl leading-none text-white">
+            {{ weather.name }}, {{ weather.sys.country }}
+          </div>
+        </div>
+        <div class="font-semibold text-base leading-none text-gray-200">
+          {{ currentDate | date : "EEEE, MMMM d y" }}
+        </div>
+        <div class="font-semibold text-base leading-none text-gray-200">
+          {{ weather.main.temp.toFixed(0) }}°C
+        </div>
+        <div class="font-semibold text-base leading-none text-gray-200">
+          {{ weather.weather[0].main }}
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-800 px-6 py-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <p class="text-sm font-semibold text-gray-300">Min Temperature</p>
+          <p class="text-sm font-semibold text-white">
+            {{ weather.main.temp_min.toFixed(0) }}°C
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-300">Max Temperature</p>
+          <p class="text-sm font-semibold text-white">
+            {{ weather.main.temp_max.toFixed(0) }}°C
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-300">Wind</p>
+          <p class="text-sm font-semibold text-white">
+            {{ weather.wind.speed }} m/s
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-300">Cloudiness</p>
+          <p class="text-sm font-semibold text-white">
+            {{ weather.clouds.all }} %
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-300">Humidity</p>
+          <p class="text-sm font-semibold text-white">
+            {{ weather.main.humidity }} %
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-300">Pressure</p>
+          <p class="text-sm font-semibold text-white">
+            {{ weather.main.pressure }} hPa
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
